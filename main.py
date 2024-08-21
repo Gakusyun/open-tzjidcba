@@ -52,6 +52,8 @@ def start_game():
         with open("player.json", "r") as file:
             data = json.load(file)
             player = Gamer(**data)
+            if input("已有存档，是否继续游戏(y/n):") == "n":
+                player = Gamer()
     else:
         player = Gamer()
     i = player.huihe
@@ -90,8 +92,8 @@ def start_game():
                         )
                         if much == 0:
                             continue
-                        if choice in player.inventory:
-                            if much <= player.inventory[products[int(choice)].name]:
+                        if products[int(choice)].name in player.inventory:
+                            if player.cash >= much * products[int(choice)].price:
                                 player.cash -= much * products[int(choice)].price
                                 player.inventory[products[int(choice)].name] += much
                                 print("购买成功")
