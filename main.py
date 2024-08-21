@@ -4,14 +4,12 @@ import random
 
 
 class Gamer(object):
-    def __init__(self):
-        self.inventory = {}
-        self.cash = 100000
+    def __init__(self, huihe=0, cash=100000, inventory={}):
+        self.inventory = inventory
+        self.cash = cash
+        self.huihe = huihe
 
     def print_inventory(self):
-        # print("玩家库存:", end="")
-        # for item in self.inventory:
-        #     print("{}:{},".format(item.name, self.inventory[item]), end=" ")
         print("玩家库存：{}".format(self.inventory))
         print("玩家现金：{}".format(self.cash))
 
@@ -50,8 +48,14 @@ def news(products):
 
 
 def start_game():
-    player = Gamer()
-    for i in range(70):
+    if os.path.exists("player.json"):
+        with open("player.json", "r") as file:
+            data = json.load(file)
+            player = Gamer(**data)
+    else:
+        player = Gamer()
+    i = player.huihe
+    while i <= 70:
         products = load_products()
         print("第{}回合".format(i + 1))
         for product in products:
@@ -149,6 +153,10 @@ def start_game():
                 break
             else:
                 print("输入错误，请重新输入")
+        i += 1
+        player.huihe = i
+        with open("player.json", "w") as f:
+            f.write(json.dumps(player.__dict__))
 
 
 def upgrade():
