@@ -90,7 +90,7 @@ def start_game():
                                 )
                             )
                         )
-                        if much == 0:
+                        if much <= 0:
                             continue
                         if products[int(choice)].name in player.inventory:
                             if player.cash >= much * products[int(choice)].price:
@@ -132,7 +132,7 @@ def start_game():
                                 )
                             )
                         )
-                        if much == 0:
+                        if much <= 0:
                             continue
                         if much <= player.inventory[products[int(choice)].name]:
                             player.cash += much * products[int(choice)].price
