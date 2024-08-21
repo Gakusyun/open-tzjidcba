@@ -157,13 +157,6 @@ def upgrade():
 
 
 def main():
-    # with open("config.json", "r") as f:
-    #     config = json.load(f)
-    # userpath = os.path.join("Users", config["user"])
-    # f.close()
-    # with open(userpath, "r") as f:
-    #     config = json.load(f)
-    # player = Gamer(name=user_info["name"], cash=10000, inventory={})
     print("欢迎来到《投机倒把》")
     print("这是一个简易的模拟经营类游戏")
     print("1.开始游戏")
