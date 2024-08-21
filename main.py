@@ -155,7 +155,7 @@ def start_game():
                 print("输入错误，请重新输入")
         i += 1
         player.huihe = i
-        with open("player.json", "w") as f:
+        with open("player.json", "w", encoding="utf-8") as f:
             f.write(json.dumps(player.__dict__))
 
 
